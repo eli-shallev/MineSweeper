@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,25 +8,28 @@
     <title>Mine Sweeper</title>
     <link rel="stylesheet" href="css/app.css">
 </head>
+
 <body onload="onInit()">
-    <table border="1">
-        <tbody class="board-container">
-            <!-- <tr>
-                <td>g</td>
-                <td>g</td>
-            </tr>
-            <tr>
-                <td>g</td>
-                <td>g</td>
-            </tr> -->
+    <div>
+        <button class="main-btn" onclick="onInit()"></button>
+        <br>
+        <p class="timer"> Time: <span></span></p>
+        <p class="lives"> Lives: <span></span></p>
+        <br>
+        <button class="diff-btn" onclick="changeDifficulty(1)">Beginner</button>
+        <button class="diff-btn" onclick="changeDifficulty(2)">Medium</button>
+        <button class="diff-btn" onclick="changeDifficulty(3)">Expert</button>
+        <table border="1">
+            <tbody class="board-container">
 
 
-        </tbody>
+            </tbody>
 
-    </table>
-
+        </table>
+    </div>
 
     <script src="js/utils.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>

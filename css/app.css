@@ -3,3 +3,19 @@
     height: 40px;
     text-align: center;
 }
+p{
+    display: inline;
+    font-size: x-large;
+    margin: 10px;
+}
+button{
+    margin: 10px;
+    font-size: x-large;
+    
+}
+body{
+    text-align: center;
+}
+table{
+    margin: auto;
+}
