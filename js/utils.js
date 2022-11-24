@@ -7,7 +7,8 @@ function createCell() {
         minesAroundCount: 0,
         isShown: false,
         isMine: false,
-        isMarked: false
+        isMarked: false,
+        isShownByHint: false
     }
     return cell
 }
@@ -20,7 +21,7 @@ function renderBoard(mat, selector) {
         for (var j = 0; j < mat[0].length; j++) {
 
             const cell = mat[i][j]
-            const className = `cell cell-${i}-${j}`
+            const className = `cell cell-${i}-${j} untouched`
 
             const cellId = (i * mat.length + j)
 
@@ -30,7 +31,7 @@ function renderBoard(mat, selector) {
             } else {
                 cellContent = (cell.isMarked) ? FLAG : ''
             }
-            if (cellContent===0) cellContent=''
+            if (cellContent===0) cellContent='▫'
 
             strHTML += `<td onClick="cellClicked(this)" class="${className}" id="${cellId}" data-i="${i}" data-j="${j}">${cellContent}</td>`
         }
@@ -54,15 +55,16 @@ function renderBoard(mat, selector) {
 }
 
 function renderCell(location) {
+
     var cellContent
     const cell = gBoard[location.i][location.j]
 
-    if (cell.isShown) {
+    if (cell.isShown || cell.isShownByHint) {
         cellContent = (cell.isMine) ? MINE : cell.minesAroundCount
     } else {
         cellContent = (cell.isMarked) ? FLAG : ''
     }
-    if (cellContent===0) cellContent=''
+    if (cellContent===0) cellContent='▫'
     const elCell = document.querySelector(`.cell-${location.i}-${location.j}`)
     elCell.innerText = cellContent
 }

@@ -10,7 +10,7 @@
 </head>
 
 <body onload="onInit()">
-    <div>
+    <div class="main-div">
         <button class="main-btn" onclick="onInit()"></button>
         <br>
         <p class="timer"> Time: <span></span></p>
@@ -19,6 +19,13 @@
         <button class="diff-btn" onclick="changeDifficulty(1)">Beginner</button>
         <button class="diff-btn" onclick="changeDifficulty(2)">Medium</button>
         <button class="diff-btn" onclick="changeDifficulty(3)">Expert</button>
+        <br>
+        <div class="best-score">
+            Best Score:
+            Beginner: <span class="beginner">0</span>
+            Medium: <span class="medium">0</span>
+            Expert: <span class="expert">0</span>
+        </div>
         <table>
             <tbody class="board-container">
 
@@ -26,6 +33,16 @@
             </tbody>
 
         </table>
+        <div class="hints"> Hints:
+            <span onclick="hintClicked(this)" class="hint hint1">💡</span>
+            <span onclick="hintClicked(this)" class="hint hint2">💡</span>
+            <span onclick="hintClicked(this)" class="hint hint3">💡</span>
+        </div>
+        <div class="safe-click" >
+            <button onclick="safeClick()" style="font-size: large;" >Safe Click</button>
+            <br>
+            Safe clicks left: <span></span>
+        </div>
     </div>
 
     <script src="js/utils.js"></script>
