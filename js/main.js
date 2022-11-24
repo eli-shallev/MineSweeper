@@ -34,7 +34,7 @@ function onInit() {
     elBtn.innerText = '😀'
 
     const elTimer = document.querySelector('.timer span')
-    elTimer.innerText = gGame.secsPassed
+    elTimer.innerText = (`00${gGame.secsPassed}`).slice(-3)
 
     const elLives = document.querySelector('.lives span')
     elLives.innerText = gLives
@@ -133,19 +133,23 @@ function startGame(elClickedCell) {
     gScoreInterval = setInterval(() => {
         gGame.secsPassed++
         const elTimer = document.querySelector('.timer span')
-        elTimer.innerText = gGame.secsPassed
+        elTimer.innerText = (`00${gGame.secsPassed}`).slice(-3)
 
         const elLives = document.querySelector('.lives span')
         elLives.innerText = gLives
     }, 1000);
 }
 
-
+function addShown(location){
+    const elCell = document.querySelector(`.cell-${location.i}-${location.j}`)
+    elCell.classList.add('shown')
+}
 
 
 function cellClicked(elCell) {
     if (gIsFirstClick) {
         startGame(elCell)
+        
     }
 
     if (!gGame.isOn) return
@@ -155,12 +159,16 @@ function cellClicked(elCell) {
         i: elCell.dataset.i,
         j: elCell.dataset.j
     }
+    //bogi(location)
     const cell = gBoard[location.i][location.j]
 
     if (cell.isMarked) return
     if (cell.isShown) return
 
     cell.isShown = true
+    addShown(location)
+
+
     gGame.shownCount++
 
 
@@ -171,10 +179,12 @@ function cellClicked(elCell) {
             gameOver(false)
         } else {
             cell.isShown = true
+            addShown(location)
             renderCell(location)
             gLives--
             setTimeout(() => {
                 cell.isShown = false
+                elCell.classList.remove('shown')
                 renderCell(location)
             }, 1000);
         }
@@ -208,9 +218,11 @@ function cellMarked(elCell) {
         if (cell.isMarked) {
             cell.isMarked = false
             gGame.markedCount--
+            elCell.classList.remove('marked')
         } else {
             cell.isMarked = true
             gGame.markedCount++
+            elCell.classList.add('marked')
         }
         renderCell(location)
     }
@@ -249,13 +261,21 @@ function gameOver(isVicroty) {
 function expandShown(board, i, j) {
     const neighborsLocations = getNeighborsLocations(board, i, j)
 
-    for (var i = 0; i < neighborsLocations.length; i++) {
-        const negLocation = neighborsLocations[i]
-        const negCell = gBoard[negLocation.i][negLocation.j]
+    for (var idx = 0; idx < neighborsLocations.length; idx++) {
+        const negLocation = neighborsLocations[idx]
+        const negCell = board[negLocation.i][negLocation.j]
+        addShown(negLocation)
         negCell.isShown = true
         gGame.shownCount++
         renderCell(negLocation)
+        //if(negCell.minesAroundCount === 0) expandShown(board,negLocation.i,negLocation.j)
     }
+
+    // for(idx = 0; idx<neighborsLocations.length;idx++){
+    //     const negLocation = neighborsLocations[idx]
+    //     const negCell = board[negLocation.i][negLocation.j]
+    //     if(negCell.minesAroundCount === 0) expandShown(board,negLocation.i,negLocation.j)
+    // }
 }
 
 function revealMines() {

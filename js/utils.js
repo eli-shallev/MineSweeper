@@ -30,6 +30,7 @@ function renderBoard(mat, selector) {
             } else {
                 cellContent = (cell.isMarked) ? FLAG : ''
             }
+            if (cellContent===0) cellContent=''
 
             strHTML += `<td onClick="cellClicked(this)" class="${className}" id="${cellId}" data-i="${i}" data-j="${j}">${cellContent}</td>`
         }
@@ -61,7 +62,7 @@ function renderCell(location) {
     } else {
         cellContent = (cell.isMarked) ? FLAG : ''
     }
-
+    if (cellContent===0) cellContent=''
     const elCell = document.querySelector(`.cell-${location.i}-${location.j}`)
     elCell.innerText = cellContent
 }

@@ -1,8 +1,17 @@
 .cell{
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     text-align: center;
+    background: linear-gradient(to top, #0daeb1, #0daeb1, #0daeb1, #0daeb1, #35dfe2, #61ddf3, #a3e7f3);
+    font-family: cursive;
+    font-weight: bolder;
+    font-size: x-large;
+    color: rgb(255, 3, 217);
+    cursor: pointer;
+    min-width: 45px;
+    
 }
+
 p{
     display: inline;
     font-size: x-large;
@@ -11,11 +20,35 @@ p{
 button{
     margin: 10px;
     font-size: x-large;
+    font-family: cursive;
+    cursor: pointer;
     
 }
 body{
     text-align: center;
+    background-image: url(../img/backround1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: cursive;
 }
+
 table{
     margin: auto;
+}
+div{
+    background-color: rgba(137, 43, 226, 0.36);
+    margin: auto;
+    margin-top: 5%;
+    width: 50%;
+    min-width: fit-content;
+    padding: 20px;
+}
+.shown{
+    box-shadow: inset 1px 1px 13px 8px rgb(0 0 0 / 40%);
+    cursor: default;
+}
+.marked{
+    cursor: default;
 }
